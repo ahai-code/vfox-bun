@@ -5,6 +5,9 @@ local util = require("util")
 --- @field ctx.version string User-input version
 --- @return table Version information
 function PLUGIN:PreInstall(ctx)
+    if #util.RELEASES == 0 then
+        self:Available(ctx)
+    end
     local releases = util.RELEASES
     for _, release in ipairs(releases) do
         if release.version == ctx.version then
