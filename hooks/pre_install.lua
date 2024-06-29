@@ -6,7 +6,7 @@ local util = require("util")
 --- @return table Version information
 function PLUGIN:PreInstall(ctx)
     if #util.RELEASES == 0 then
-        self:Available(ctx)
+        util:getInfo()
     end
     local releases = util.RELEASES
     for _, release in ipairs(releases) do
