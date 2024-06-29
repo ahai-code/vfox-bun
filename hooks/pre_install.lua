@@ -9,6 +9,12 @@ function PLUGIN:PreInstall(ctx)
         util:getInfo()
     end
     local releases = util.RELEASES
+    table.sort(releases, function(a, b)
+        return util:compare_versions(a, b)
+    end)
+    if ctx.version == "latest" then
+        return releases[1]
+    end
     for _, release in ipairs(releases) do
         if release.version == ctx.version then
             return release
